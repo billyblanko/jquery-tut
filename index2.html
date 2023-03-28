@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Text 2</title>
+</head>
+<body>
+    <button id="btn1">Get User</button>
+    <button id="btn2">Get Users</button>
+    <br><br>
+    <h1>User</h1>
+    <div id="user"></div>
+    <h1>Users</h1>
+    <div id="users"></div>
+
+
+    <script>
+        //get user data from json file
+        document.getElementById('btn1').addEventListener('click', loadUser);
+
+        //get users data from json file
+        document.getElementById('btn2').addEventListener('click', loadUsers);
+
+        //ajax function to get user data
+
+        function loadUser(){
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'user.json', true);
+
+            xhr.onload = function(){
+                if(this.status = 200){
+                    var user = JSON.parse(this.responseText);
+                    
+                    var output = '';
+
+                    //append output variable to html to give the data a structure 
+                    output += '<ul>' +
+                        '<li>ID: '+user.id+'</li>' +
+                        '<li>Name: '+user.name+'</li>' +
+                        '<li>Email: '+user.email+'</li>' +
+                        '</ul>';
+
+                        document.getElementById('user').innerHTML = output;
+                }
+            }
+
+            xhr.send();
+        }
+
+        //ajax function to get users data
+
+        function loadUsers(){
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'users.json', true);
+
+            xhr.onload = function(){
+                if(this.status = 200){
+                    var users = JSON.parse(this.responseText);
+                    
+                    var output = '';
+
+                    //ran a for loop to get users data from json file as it is in an array
+                    for(var i in users){
+                    output += '<ul>' +
+                        '<li>ID: '+users[i].id+'</li>' +
+                        '<li>Name: '+users[i].name+'</li>' +
+                        '<li>Email: '+users[i].email+'</li>' +
+                        '</ul>';
+                    }    
+
+                        document.getElementById('users').innerHTML = output;
+                }
+            }
+
+            xhr.send();
+        }
+    </script>
+</body>
+</html>

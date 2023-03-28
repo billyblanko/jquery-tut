@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Test</title>
+</head>
+<body>
+    <button id="btn">Get Text File</button>
+    <br><br>
+
+    <div id="text"></div>
+    <script>
+        // create event listener
+        document.getElementById("btn").addEventListener('click', loadText);
+
+        function loadText(){
+            // Create XHR Object
+            var xhr = new XMLHttpRequest();
+            // OPEN - type, url/file, async
+            xhr.open('GET', 'sample.txt', true);
+
+            console.log('READYSTATE: ',xhr.readyState);
+
+            //OPTIONAL ONPROGRESS for loaders 
+            xhr.onprogress = function(){
+                console.log('READYSTATE: ',xhr.readyState);
+            }
+
+            // check for the status of response with onload function
+            xhr.onload = function(){
+                console.log('READYSTATE: ',xhr.readyState);
+
+                //to make sure the status of conn is OK
+                if(this.status == 200){
+                    // console.log(this.responseText);
+                    document.getElementById('text').innerHTML = this.responseText;
+                } else if(this.status = 404){
+                    document.getElementById('text').innerHTML = 'Not Found';
+                } 
+            }
+
+            //if you use onload equally us onerror
+            xhr.onerror = function(){
+                console.log('Request Error');
+            }
+
+            //check for the status of response with onreadystate function
+
+            // xhr.onreadystatechange = function(){
+            //     console.log('READYSTATE: ',xhr.readyState);
+            //     if(this.readyState == 4 && this.status == 200){
+            //         console.log(this.responseText);
+            //     }
+            // }
+
+            // //Send Request
+            xhr.send() 
+        }
+
+        // NOTE: HTTP STATUSES
+        // 200: "OK"
+        // 403: "forbidden"
+        // 404: "Not Found"
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX External API</title>
+</head>
+<body>
+    <button id="btn-users">Load Github Users</button>
+    <br><br>
+    <h1>Github Users</h1>
+    <div id="users"></div>
+
+    <script>
+        document.getElementById('btn-users').addEventListener('click', loadGitUsers);
+
+        //load Github Users
+        function loadGitUsers(){
+            // assign xmlhttprequest to your variable
+            var xhr = new XMLHttpRequest();
+            xhr.open('Get', 'https://api.github.com/users', true);
+
+            xhr.onload = function(){
+                if(this.status == 200){
+                    var gitUsers = JSON.parse(this.responseText);
+
+                    var output = '';
+                    for(var i in gitUsers){
+                        output +=
+                        '<div class="user">' +
+                        '<img src="'+gitUsers[i].avatar_url+'" width="70" height="70">' +
+                        '<ul>' +
+                        '<li>ID: '+gitUsers[i].id+'</li>' +
+                        '<li>Login: '+gitUsers[i].login+'</li>' +
+                        '</ul>' +
+                        '</div>';
+                    }
+
+                    document.getElementById('users').innerHTML = output;
+                }
+            }
+
+            xhr.send()
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+.header{
+    text-align: center;
+}
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+.btn-panel{
+    width: 5rem;
+    padding: 15px 0;
+    background-color: blue;
+    border: none;
+    border-radius: 10px;
+}
+.panel{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.panel-one, .panel-two, .panel-three{
+    display: none;
+    width: 20rem;
+    height: 20rem;
+    border: 2px solid blue;
+}
+.list li{
+    cursor: context-menu;
+}
+.special{
+    color: red;
+}
+.tab-panels{
+    margin-bottom: 5rem;
+}
+.tabs{
+    margin: 0;
+    padding: 0;
+    display: flex; 
+    gap: 3px; 
+}
+.tabs li{
+    list-style: none;
+    background: #999;
+    color: #fff;
+    padding: 0 5px;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    font-weight: 200;
+}
+.tabs li.active{
+    background: #666;
+}
+.tabs li:hover{
+    background: #666;
+}
+.panel-div{
+    display: none;
+    padding: 15px 10px;
+    border-radius: 0 0 10px 10px;
+    background: #c9c9c9;
+}
+.panel-div.active{
+    display: block;
+}
+#slider{
+    width: 720px;
+    height: 400px;
+    overflow: hidden; 
+}
+#slider img{
+    width: 720px;
+    height: 400px;
+}
+#slider .slides{
+    display: flex;
+    width: 600px;
+    height: 400px;
+    margin: 0;
+    padding: 0;
+}
+#slider .slide{
+    display: flex;
+    list-style: none;
+    width: 720px;
+    height: 400px;
+}

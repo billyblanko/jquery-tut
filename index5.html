@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../jquery-tut/src/main.css">
+    <title>Jquery TUT</title>
+</head>
+<body>
+    <h1 class="header">
+        Dry Up Jquery
+    </h1>
+
+    <div class="buttons">
+        <button class="btn-panel" data-panelid="button1">First</button>
+        <button class="btn-panel" data-panelid="button2">Second</button>
+        <button class="btn-panel" data-panelid="button3">Third</button>
+    </div>
+
+    <div class="panel">
+        <div id="button1" class="panel-one">
+            <h3>pray</h3>
+            <div class="panel-body"></div>
+        </div>
+        <div id="button2" class="panel-two">
+            <h3>grow</h3>
+            <div class="panel-body"></div>
+        </div>
+        <div id="button3" class="panel-three">
+            <h3>learn</h3>
+            <div class="panel-body"></div>
+        </div>
+    </div>
+
+
+    <div class="listcontainer">
+        <ul class="list">
+            <li>one</li>
+            <li class="special">two</li>
+            <li>three</li>
+            <li>
+                <ul class="sublist">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="tab-panels">
+        <ul class="tabs">
+            <li rel="panel1" class="active">panel1</li>
+            <li rel="panel2">panel2</li>
+            <li rel="panel3">panel3</li>
+            <li rel="panel4">panel4</li>
+        </ul>
+
+        <div id="panel1" class="panel-div active">
+            content 1<br>
+            content 1<br>
+            content 1<br>
+            content 1<br>
+            content 1<br>
+        </div>
+        <div id="panel2" class="panel-div">
+            content 2<br>
+            content 2<br>
+            content 2<br>
+            content 2<br>
+            content 2<br>
+        </div>
+        <div id="panel3" class="panel-div">
+            content 3<br>
+            content 3<br>
+            content 3<br>
+            content 3<br>
+            content 3<br>
+        </div>
+        <div id="panel4" class="panel-div">
+            content 4<br>
+            content 4<br>
+            content 4<br>
+            content 4<br>
+            content 4<br>
+        </div>
+    </div>
+
+    <div class="tab-panels">
+        <ul class="tabs">
+            <li rel="panel5" class="active">panel5</li>
+            <li rel="panel6">panel6</li>
+            <li rel="panel7">panel7</li>
+            <li rel="panel8">panel8</li>
+        </ul>
+
+        <div id="panel5" class="panel-div active">
+            content 5<br>
+            content 5<br>
+            content 5<br>
+            content 5<br>
+            content 5<br>
+        </div>
+        <div id="panel6" class="panel-div">
+            content 6<br>
+            content 6<br>
+            content 6<br>
+            content 6<br>
+            content 6<br>
+        </div>
+        <div id="panel7" class="panel-div">
+            content 7<br>
+            content 7<br>
+            content 7<br>
+            content 7<br>
+            content 7<br>
+        </div>
+        <div id="panel8" class="panel-div">
+            content 8<br>
+            content 8<br>
+            content 8<br>
+            content 8<br>
+            content 8<br>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="container-header">
+            <h1 class="text-muted">jQuery Basic Slider</h1>
+        </div>
+
+        <div id="slider">
+            <ul class="slides">
+                <li class="slide"><img src="../jquery-tut/assets/img/20220102_182421.jpg" alt=""></li>
+                <li class="slide"><img src="../jquery-tut/assets/img/20220605_142629.jpg" alt=""></li>
+                <li class="slide"><img src="../jquery-tut/assets/img/20220711_143436.jpg" alt=""></li>
+                <li class="slide"><img src="../jquery-tut/assets/img/20220713_175631.jpg" alt=""></li>
+                <li class="slide"><img src="../jquery-tut/assets/img/20220713_175643.jpg" alt=""></li>
+                <li class="slide"><img src="../jquery-tut/assets/img/20220711_143436.jpg" alt=""></li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+<script src="../jquery-tut/node_modules/jquery.js"></script>
+<script src="../jquery-tut/src/main.js"></script>
+<script>
+    // $(function() {
+
+    //     $('#btn-one').hide();
+
+    // });
+
+
+    // HOW TO DRY UP JQUERY
+
+    $(function() {
+
+        var content = "Learning Jquery has been fun"
+
+        $('.btn-panel').on('click', function() {
+            var btnId = $(this).attr('data-panelid');
+            $('#'+btnId).toggle();
+            console.log('#'+btnId);
+            $('#'+btnId+' .panel-body').html(content);
+        });  
+
+        //DOM TRAVERSAL
+
+        $('.sublist li').on('click', function() {
+            console.log('clicked li');
+            if($(this).parent().is('.sublist')) {
+                $(this).hide();     
+            }
+        });
+
+        // BUILDING A TAB WIDGET
+        
+        //Create A Function To Make All Panels Add & Remove class "active"
+        $('.tab-panels .tabs li').on('click', function() {
+            // TO write A Clearer Jquery 
+            var $panel = $(this).closest('.tab-panels');
+
+            $panel.find('.tabs li.active').removeClass('active');
+
+            //Previous Syntax(not clear)
+            // $('.tab-panels .tabs li.active').removeClass('active');
+            $(this).addClass('active');
+
+            //Figure Out Which Panel To Show
+            var panelToShow = $(this).attr('rel');
+
+            // Hide Current Panel
+            $('.tab-panels .panel-div.active').slideDown(300, showNextPanel);
+
+            //To Avoid CallBack Hell
+            function showNextPanel() {
+                $(this).removeClass('active');
+
+                // Show Current Panel
+                $('#'+panelToShow).slideUp(300, function(){
+                    $(this).addClass('active');
+                })
+            }
+        });
+    });
+</script>
+</html>
