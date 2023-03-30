@@ -27,7 +27,7 @@
 
         function loadUser(){
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'user.json', true);
+            xhr.open('GET', 'api/user.json', true);
 
             xhr.onload = function(){
                 if(this.status = 200){
@@ -53,7 +53,7 @@
 
         function loadUsers(){
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'users.json', true);
+            xhr.open('GET', 'api/users.json', true);
 
             xhr.onload = function(){
                 if(this.status = 200){

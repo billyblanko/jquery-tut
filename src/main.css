@@ -88,3 +88,21 @@
     width: 720px;
     height: 400px;
 }
+
+/* JQUERY AJAX TUT */
+.orders li{
+    list-style: none;
+}
+.orders li:first-child{
+    background-color: #999;
+    padding: 10px 15px;
+    margin-bottom: 1rem;
+}
+.orders li:last-child{
+    background-color: #999;
+    padding: 10px 15px;
+}
+#btn-add-order{
+    margin-top: 1rem;
+    padding: 0 10px;
+}
