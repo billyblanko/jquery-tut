@@ -39,8 +39,12 @@ $(function () {
     //start slider
     startSlider();
 
+});
 
     //jQuery AJAX 
+    
+$(function() {
+
     var $orders = $('#orders');
 
     $.ajax({
