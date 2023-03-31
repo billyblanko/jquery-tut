@@ -47,8 +47,9 @@ $(function () {
         type: 'GET',
         url: 'api/orders.json',
         success: function(orders) {
-            $.each(orders, function(i, order) {
-                $orders.append('<li>name: '+ order.name+', drink: '+order.drink +'</li>');
+            console.log('success', orders);
+            $.each(orders, function(i, orders) {
+                $orders.append('<li>name: '+ orders.name+', drink: '+orders.drink +'</li>');
             });
         }
     });

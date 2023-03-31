@@ -90,15 +90,15 @@
 }
 
 /* JQUERY AJAX TUT */
-.orders li{
+#orders li{
     list-style: none;
 }
-.orders li:first-child{
+#orders li:first-child{
     background-color: #999;
     padding: 10px 15px;
     margin-bottom: 1rem;
 }
-.orders li:last-child{
+#orders li:last-child{
     background-color: #999;
     padding: 10px 15px;
 }
