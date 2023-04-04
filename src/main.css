@@ -93,15 +93,20 @@
 #orders li{
     list-style: none;
 }
-#orders li:first-child{
+#orders li{
+    background-color: #999;
+    padding: 10px 15px; 
+    margin-bottom: 1rem;
+}
+/* #orders li:first-child{
     background-color: #999;
     padding: 10px 15px;
     margin-bottom: 1rem;
-}
-#orders li:last-child{
+} */
+/* #orders li:last-child{
     background-color: #999;
     padding: 10px 15px;
-}
+} */
 #btn-add-order{
     margin-top: 1rem;
     padding: 0 10px;

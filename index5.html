@@ -166,7 +166,11 @@
             $('#'+btnId+' .panel-body').html(content);
         });  
 
-        //DOM TRAVERSAL
+    });
+
+    $(function() {
+
+            //DOM TRAVERSAL
 
         $('.sublist li').on('click', function() {
             console.log('clicked li');
@@ -174,18 +178,23 @@
                 $(this).hide();     
             }
         });
+    })
 
+    $(function() {
         // BUILDING A TAB WIDGET
         
-        //Create A Function To Make All Panels Add & Remove class "active"
+        //Create A Function To Make All Panels Add & Remove        ".active"
         $('.tab-panels .tabs li').on('click', function() {
-            // TO write A Clearer Jquery 
+
+            // Write A Clearer Jquery 
+
             var $panel = $(this).closest('.tab-panels');
 
             $panel.find('.tabs li.active').removeClass('active');
 
             //Previous Syntax(not clear)
             // $('.tab-panels .tabs li.active').removeClass('active');
+
             $(this).addClass('active');
 
             //Figure Out Which Panel To Show
@@ -201,7 +210,7 @@
                 // Show Current Panel
                 $('#'+panelToShow).slideUp(300, function(){
                     $(this).addClass('active');
-                })
+                });
             }
         });
     });

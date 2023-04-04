@@ -22,5 +22,4 @@
             echo 'ERROR: '. mysqli_error($connect); 
         }
     }
-
 ?>  

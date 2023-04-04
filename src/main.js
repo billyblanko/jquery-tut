@@ -1,5 +1,8 @@
 'use strict'
+
 $(function () {
+
+    //Image Slider
 
     //create a variable for configuration
     var width = 720;
@@ -12,9 +15,9 @@ $(function () {
     var $slideContainer = $slider.find('.slides'); //find the slides in the slider
     var $slides = $slideContainer.find('.slide'); //find the slide in slides
 
+    //setInterval
     var interval;
 
-    //setInterval
     //animate margn-left
     //when you get to the last slde, go to position 1 (0px)
     function startSlider(){
@@ -28,6 +31,7 @@ $(function () {
             });
         }, pause);
     }
+
     function stopSlider() {
         clearInterval(interval);
     }
@@ -41,11 +45,28 @@ $(function () {
 
 });
 
-    //jQuery AJAX 
-    
+
 $(function() {
 
+    //jQuery AJAX 
+
+    //caching the DOM
     var $orders = $('#orders');
+    var $name = $('#name');
+    var $drink = $('#drink');
+
+    // Fetch Data from JSON file
+    // $.getJSON('api/orders.json', function(data) {
+
+    //     //loop through data and append to list
+    //     $.each(data, function(index, orders) {
+    //         $orders.append('<li>name: '+ orders.name+', drink: '+orders.drink +'</li>');
+    //     });
+    // });
+
+    function addOrder(orders){
+        $orders.append('<li>name: '+ orders.name+', drink: '+orders.drink +'</li>');
+    }
 
     $.ajax({
         type: 'GET',
@@ -53,8 +74,44 @@ $(function() {
         success: function(orders) {
             console.log('success', orders);
             $.each(orders, function(i, orders) {
-                $orders.append('<li>name: '+ orders.name+', drink: '+orders.drink +'</li>');
+                addOrder(orders);
             });
+        },
+        error: function(){
+            alert('error loading orders');
         }
     });
-});
+
+    //POSTING FROM jQuery TO SERVER SIDE
+
+    function addOrder(newOrder) {
+        $orders.append('<li>name: ' + newOrder.name + ', drink: ' + newOrder.drink + '</li>');
+        $name.val(''); // clear the name field
+        $drink.val(''); // clear the drink field
+    }
+
+    $('#btn-add-order').on('click', function(){
+        // e.preventDefault();
+
+        var order = {
+            name: $name.val(),
+            drink: $drink.val(),
+        };
+
+        console.log('sending order', order);      
+
+        $.ajax({
+            type: 'POST',
+            url: 'postorder.php',
+            data: order,
+            success: function(newOrder){
+                console.log('success', newOrder);
+                addOrder(newOrder); 
+                // console.log(addOrder(newOrder));
+            },
+            error: function(){
+                alert('error saving order');
+            }
+        });
+    });
+}); 
