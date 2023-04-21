@@ -111,3 +111,12 @@
     margin-top: 1rem;
     padding: 0 10px;
 }
+ul li .edit{
+    display: none;
+}
+ul li.edit .edit {
+    display: initial;
+}
+ul li.edit .noedit {
+    display: none;
+}

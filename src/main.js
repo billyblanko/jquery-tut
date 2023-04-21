@@ -55,18 +55,13 @@ $(function() {
     var $name = $('#name');
     var $drink = $('#drink');
 
-    // Fetch Data from JSON file
-    // $.getJSON('api/orders.json', function(data) {
+    var orderTemplate = $('#order-template').html();
 
-    //     //loop through data and append to list
-    //     $.each(data, function(index, orders) {
-    //         $orders.append('<li>name: '+ orders.name+', drink: '+orders.drink +'</li>');
-    //     });
-    // });
 
     function addOrder(orders){
-        $orders.append('<li>name: '+ orders.name+', drink: '+orders.drink +'</li>');
-    }
+        let rendered = Mustache.render(orderTemplate, orders);
+        $orders.append(rendered);
+    };
 
     $.ajax({
         type: 'GET',
@@ -84,7 +79,7 @@ $(function() {
 
     //POSTING FROM jQuery TO SERVER SIDE
 
-    function addOrder(newOrder) {
+    function postAddOrder(newOrder) {
         $orders.append('<li>name: ' + newOrder.name + ', drink: ' + newOrder.drink + '</li>');
         $name.val(''); // clear the name field
         $drink.val(''); // clear the drink field
@@ -106,11 +101,29 @@ $(function() {
             data: order,
             success: function(newOrder){
                 console.log('success', newOrder);
-                addOrder(newOrder); 
+                postAddOrder(newOrder); 
                 // console.log(addOrder(newOrder));
             },
             error: function(){
                 alert('error saving order');
+            }
+        });
+    });
+
+    $orders.delegate('.remove', 'click', function() {
+
+        var $li = $(this).closest('li');
+
+        $.ajax({
+            type: 'POST',
+            url: 'delete.php?id=' + $(this).attr('data-id'),
+            success: function() {
+                $li.fadeOut(300, function() {
+                    $(this).remove();
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText)
             }
         });
     });

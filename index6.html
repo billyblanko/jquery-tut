@@ -14,8 +14,27 @@
 
     <div class="container-order">
         <ul id="orders">
-            <!-- <li>Name: John, Drink: Coffee</li>
-            <li>Name: John, Drink: Coffee</li> -->
+            <template id="order-template">
+                <li class="edit">
+                    <p>
+                        <strong>Name:</strong> 
+                        <span class="noedit">{{name}}</span>
+                        <input class="edit name">
+                    </p> 
+                    <p>
+                        <strong>Drink:</strong> 
+                        <span class="noedit">{{drink}}</span>
+                        <input class="edit drink">
+                    </p>
+                    <button data-id='{{id}}' class='remove'>X</button>
+                    <button class="editOrder noedit
+                    ">Edit</button>
+                    <button class="saveEdit edit
+                    ">Save</button>
+                    <button class="cancelEdit edit
+                    ">Cancel</button>
+                </li>
+            </template>
         </ul>
     </div>
 
@@ -23,13 +42,13 @@
         <h4>Add a Coffee Order</h4>
         <label for="">Name:</label>
         <input type="text" id="name"><br>
-        <br>
+        <br> 
         <label for="">Drink:</label>
         <input type="text" id="drink"><br>
         <button id="btn-add-order">Add!</button>
     </div>
 </body>
 <script src="../jquery-tut/node_modules/jquery.js"></script>
-<script src="../jquery-tut/node_modules/mustache.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.1.0/mustache.min.js"></script>
 <script src="../jquery-tut/src/main.js"></script>
 </html>

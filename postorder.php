@@ -20,6 +20,7 @@
 
     // add new order
     $newOrder = array(
+        'id' => count($orders) + 1,
         'name'=> $clientName,
         'drink'=> $drink
     );
@@ -31,6 +32,7 @@
     //Construct the response data
 
     $newOrder = array(
+        'id' => count($orders) + 1,
         'name'=> $clientName,
         'drink'=> $drink
     );

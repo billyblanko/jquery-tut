@@ -1,1 +1,5 @@
 The sun was setting over the mountains, casting a warm orange glow across the sky. A cool breeze blew through the trees, rustling the leaves and carrying the sweet scent of blooming flowers. Birds chirped and flew overhead, their colorful feathers contrasting against the vibrant sunset. In the distance, a faint sound of laughter and music could be heard, as people gathered to celebrate the end of a long day. It was a peaceful and beautiful moment, reminding us to appreciate the simple joys of life.
+
+
+Delete Order
+DELETE request to /api/orders/{id}
