@@ -15,15 +15,15 @@
     <div class="container-order">
         <ul id="orders">
             <template id="order-template">
-                <li class="edit">
+                <li class="edit" data-id="{{id}}">
                     <p>
                         <strong>Name:</strong> 
-                        <span class="noedit">{{name}}</span>
+                        <span class="noedit name">{{name}}</span>
                         <input class="edit name">
                     </p> 
                     <p>
                         <strong>Drink:</strong> 
-                        <span class="noedit">{{drink}}</span>
+                        <span class="noedit drink">{{drink}}</span>
                         <input class="edit drink">
                     </p>
                     <button data-id='{{id}}' class='remove'>X</button>
