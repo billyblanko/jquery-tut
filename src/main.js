@@ -110,7 +110,7 @@ $(function() {
         });
     });
 
-    $orders.delegate('.remove', 'click', function() {
+    $orders.on('click', '.remove', function() {
 
         var $li = $(this).closest('li');
 
@@ -128,18 +128,18 @@ $(function() {
         });
     });
 
-    $orders.delegate('.editOrder', 'click', function() {
+    $orders.on('click', '.editOrder', function() {
         var $li = $(this).closest('li');
         $li.find('input.name').val($li.find('span.name').html() );
         $li.find('input.drink').val($li.find('span.drink').html() );
         $li.addClass('edit');
     });
 
-    $orders.delegate('.cancelEdit', 'click', function() {
+    $orders.on('click', '.cancelEdit', function() {
         $(this).closest('li').removeClass('edit');
     });
 
-    $orders.delegate('.saveEdit', 'click', function() {
+    $orders.on('click', '.saveEdit', function() {
         var $li = $(this).closest('li');
         var order = {
             name: $li.find('input.name').val(),
